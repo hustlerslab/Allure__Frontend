@@ -25,35 +25,62 @@ This document defines the architecture and technical contracts for the AI Contro
 
 # System Architecture Overview
 
-The AI Control Center follows a layered architecture that separates presentation, business logic, and data access.
+The AI Control Center follows a layered architecture that separates the presentation layer, API management, business services, and data storage. This modular design improves scalability, maintainability, and secure communication between frontend and backend components.
 
-```text
-Administrator
-       │
-       ▼
-┌─────────────────────────────┐
-│     Admin Portal (Next.js)  │
-└──────────────┬──────────────┘
-               │
-               ▼
-┌─────────────────────────────┐
-│        API Gateway          │
-└──────────────┬──────────────┘
-               │
- ┌─────────────┼───────────────────────────────────┐
- │             │             │            │         │
- ▼             ▼             ▼            ▼         ▼
-Authentication AI Model   Prompt      Analytics  Monitoring
-Service       Service     Service     Service    Service
- │             │             │            │         │
- └─────────────┴─────────────┴────────────┴─────────┘
-                       │
-                       ▼
-                 PostgreSQL / Redis
+```mermaid
+flowchart TB
+
+    Admin[Administrator]
+
+    subgraph Presentation Layer
+        Portal[Admin Portal<br/>Next.js]
+    end
+
+    subgraph API Layer
+        Gateway[API Gateway]
+    end
+
+    subgraph Business Services
+        Auth[Authentication Service]
+        Model[AI Model Service]
+        Prompt[Prompt Management Service]
+        Config[Configuration Service]
+        Analytics[Analytics Service]
+        Monitor[Monitoring Service]
+        Knowledge[Knowledge Base Service]
+        Audit[Audit Logging Service]
+    end
+
+    subgraph Data Layer
+        PostgreSQL[(PostgreSQL)]
+        Redis[(Redis Cache)]
+        VectorDB[(Vector Database)]
+    end
+
+    Admin --> Portal
+    Portal --> Gateway
+
+    Gateway --> Auth
+    Gateway --> Model
+    Gateway --> Prompt
+    Gateway --> Config
+    Gateway --> Analytics
+    Gateway --> Monitor
+    Gateway --> Knowledge
+    Gateway --> Audit
+
+    Auth --> PostgreSQL
+    Model --> PostgreSQL
+    Prompt --> PostgreSQL
+    Config --> PostgreSQL
+    Analytics --> PostgreSQL
+    Audit --> PostgreSQL
+
+    Model --> Redis
+    Monitor --> Redis
+
+    Knowledge --> VectorDB
 ```
-
----
-
 # Component Structure
 
 The AI Control Center is divided into feature-based components.
