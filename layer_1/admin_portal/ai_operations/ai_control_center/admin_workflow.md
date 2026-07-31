@@ -8,131 +8,113 @@
 
 ---
 
+# Table of Contents
+
+1. Purpose
+2. Workflow Objectives
+3. Scope
+4. Actors
+5. High-Level Workflow
+6. Workflow Description
+7. Preconditions
+8. Workflow Stages
+   - Authentication
+   - Dashboard Initialization
+   - AI Operations
+   - AI Monitoring
+   - Analytics
+   - Cost Management
+   - Incident Management
+   - Audit Logging
+9. Complete Operational Flow
+10. Workflow State Transitions
+11. Business Rules
+12. Error Handling
+13. Security Considerations
+14. Performance Requirements
+15. Notifications & Alerts
+16. Integration Points
+17. Dependencies
+18. Workflow Summary
+19. Related Documents
+
+---
+
 # Purpose
 
-The Admin Workflow defines how administrators interact with the AI Control Center to monitor, configure, control, and optimize AI services across the platform.
+Describe the purpose of the Admin Workflow and how administrators interact with the AI Control Center.
 
-The workflow covers the complete lifecycle of AI administration, including authentication, AI operations, monitoring, analytics, incident management, and auditing.
+---
+
+# Workflow Objectives
+
+- Secure administrator authentication
+- Monitor AI services
+- Manage AI models
+- Configure AI settings
+- Monitor operational costs
+- Detect and resolve incidents
+- Maintain audit logs
+- Generate analytics reports
+
+---
+
+# Scope
+
+## Included
+
+- AI Model Management
+- Prompt Management
+- AI Configuration
+- Knowledge Base
+- Monitoring
+- Analytics
+- Cost Management
+- Incident Management
+- Audit Logging
+
+## Excluded
+
+- Homeowner Portal
+- Designer Portal
+- Customer-facing AI workflows
+
+---
+
+# Actors
+
+| Actor | Responsibilities |
+|--------|------------------|
+| Super Admin | Complete platform administration |
+| AI Administrator | Manage AI services and configurations |
+| Security Administrator | Security, permissions, and compliance |
+| Monitoring Service | Collect metrics and generate alerts |
+| Analytics Service | Generate dashboards and reports |
 
 ---
 
 # High-Level Workflow
 
 ```mermaid
-flowchart LR
-
-%% User Layer
-
-A[Admin]
-B[Browser]
-
-%% Frontend
-
-subgraph Frontend
-    C[Admin Portal<br/>AI Control Center]
-end
-
-%% API Layer
-
-D[API Gateway]
-
-%% Backend Services
-
-subgraph Backend Services
-
-E[Authentication Service]
-
-F[Authorization Service]
-
-G[AI Model Service]
-
-H[Prompt Management Service]
-
-I[AI Configuration Service]
-
-J[Knowledge Base Service]
-
-K[Monitoring Service]
-
-L[Analytics Service]
-
-M[Cost Management Service]
-
-N[Incident Management Service]
-
-O[Audit Logging Service]
-
-end
-
-%% Databases
-
-subgraph Databases
-
-P[(User Database)]
-
-Q[(AI Configuration Database)]
-
-R[(Knowledge Base)]
-
-S[(Metrics Database)]
-
-T[(Analytics Database)]
-
-U[(Audit Logs)]
-
-end
-
-%% Flow
-
-A --> B
-
-B --> C
-
-C --> D
-
-D --> E
-D --> F
-D --> G
-D --> H
-D --> I
-D --> J
-D --> K
-D --> L
-D --> M
-D --> N
-D --> O
-
-E --> P
-F --> P
-
-G --> Q
-H --> Q
-I --> Q
-
-J --> R
-
-K --> S
-
-L --> T
-
-M --> T
-
-N --> S
-
-O --> U
+(Add your existing High-Level Workflow Mermaid diagram here)
 ```
 
 ---
 
 # Workflow Description
 
-The administrator accesses the AI Control Center through the Admin Portal.
+Explain the overall workflow, request routing, backend services, and database interactions.
 
-The request passes through the API Gateway, which routes it to the appropriate backend service.
+---
 
-Depending on the operation, requests are processed by dedicated services responsible for authentication, AI model management, prompt management, analytics, monitoring, configuration, and incident handling.
+# Preconditions
 
-Each backend service communicates with its respective database while all administrative activities are recorded in the Audit Logging Service.
+- Administrator account exists
+- MFA is enabled
+- Required permissions are assigned
+- API Gateway is available
+- AI backend services are running
+- Databases are accessible
 
 ---
 
@@ -141,25 +123,10 @@ Each backend service communicates with its respective database while all adminis
 ## 1. Authentication
 
 ```text
-Admin
-   │
-   ▼
-Browser
-   │
-   ▼
-Admin Portal
-   │
-   ▼
-Authentication Service
-   │
-   ▼
-Permission Validation
-   │
-   ▼
-Dashboard
+(Add your Authentication flow here)
 ```
 
-Responsibilities
+### Responsibilities
 
 - Authenticate administrator
 - Verify MFA
@@ -168,152 +135,101 @@ Responsibilities
 
 ---
 
-## 2. AI Operations
+## 2. Dashboard Initialization
 
-```text
-Dashboard
-    │
-    ▼
-API Gateway
-    │
-    ├────────────► AI Model Service
-    │
-    ├────────────► Prompt Management
-    │
-    ├────────────► AI Configuration
-    │
-    └────────────► Knowledge Base
-```
-
-Operations
-
-- Deploy AI models
-- Update prompts
-- Configure AI
-- Manage AI knowledge
-- Rollback model versions
+Describe how the dashboard loads widgets, metrics, notifications, and AI service status after successful authentication.
 
 ---
 
-## 3. AI Monitoring
+## 3. AI Operations
 
 ```text
-Monitoring Service
-        │
-        ▼
-Collect Metrics
-        │
-        ▼
-Analyze Performance
-        │
-        ▼
-Generate Alerts
+(Add your AI Operations flow here)
 ```
 
-Metrics
+### Operations
+
+- Deploy AI models
+- Rollback versions
+- Configure AI
+- Manage prompts
+- Update knowledge base
+
+---
+
+## 4. AI Monitoring
+
+```text
+(Add your Monitoring flow here)
+```
+
+### Metrics
 
 - API Latency
 - Success Rate
 - Error Rate
 - GPU Usage
+- CPU Usage
 - Memory Usage
 - Token Usage
 - Active Requests
 
 ---
 
-## 4. Analytics
+## 5. Analytics
 
 ```text
-Analytics Service
-        │
-        ▼
-Collect Usage Data
-        │
-        ▼
-Generate Reports
-        │
-        ▼
-Dashboard Visualization
+(Add your Analytics flow here)
 ```
 
-Reports include
+### Reports
 
-- AI usage
-- Model performance
-- Token consumption
-- Cost analysis
-- User activity
+- AI Usage
+- Model Performance
+- Cost Analysis
+- User Activity
+- Token Consumption
 
 ---
 
-## 5. Cost Management
+## 6. Cost Management
 
 ```text
-Cost Service
-      │
-      ▼
-Track Token Usage
-      │
-      ▼
-Calculate Cost
-      │
-      ▼
-Budget Monitoring
+(Add your Cost Management flow here)
 ```
 
 ---
 
-## 6. Incident Management
+## 7. Incident Management
 
 ```text
-Alert Generated
-       │
-       ▼
-Incident Service
-       │
-       ▼
-Root Cause Analysis
-       │
-       ▼
-Resolution
-       │
-       ▼
-Verification
+(Add your Incident Management flow here)
 ```
 
-Common Incidents
+### Common Incidents
 
 - API timeout
 - AI model failure
+- Infrastructure failure
 - High latency
 - Rate limiting
-- Infrastructure failure
 
 ---
 
-## 7. Audit Logging
-
-Every administrative operation is recorded.
+## 8. Audit Logging
 
 ```text
-Admin Action
-      │
-      ▼
-Audit Service
-      │
-      ▼
-Audit Database
+(Add your Audit Logging flow here)
 ```
 
-Captured Information
+### Captured Information
 
 - Administrator ID
 - Timestamp
+- Action Type
 - Resource
 - Previous Value
 - Updated Value
-- Action Type
 - Status
 - IP Address
 
@@ -322,70 +238,141 @@ Captured Information
 # Complete Operational Flow
 
 ```mermaid
-flowchart TD
-
-A(Admin Login)
-
-B(Authentication)
-
-C(Dashboard)
-
-D(AI Monitoring)
-
-E(Model Management)
-
-F(Prompt Management)
-
-G(AI Configuration)
-
-H(Knowledge Base)
-
-I(Analytics)
-
-J(Cost Monitoring)
-
-K(Incident Management)
-
-L(Audit Logging)
-
-M(Logout)
-
-A --> B
-
-B --> C
-
-C --> D
-
-C --> E
-
-C --> F
-
-C --> G
-
-C --> H
-
-C --> I
-
-C --> J
-
-D --> K
-
-E --> L
-
-F --> L
-
-G --> L
-
-H --> L
-
-I --> L
-
-J --> L
-
-K --> L
-
-L --> M
+(Add your existing Complete Operational Flow Mermaid diagram here)
 ```
+
+---
+
+# Workflow State Transitions
+
+```text
+Login
+   │
+   ▼
+Authentication
+   │
+   ▼
+Dashboard
+   │
+   ▼
+AI Operations
+   │
+   ▼
+Monitoring
+   │
+   ▼
+Analytics
+   │
+   ▼
+Audit Logging
+   │
+   ▼
+Logout
+```
+
+---
+
+# Business Rules
+
+- MFA is mandatory.
+- RBAC controls all administrative access.
+- Every action must be audit logged.
+- Prompt changes are version controlled.
+- AI models support rollback.
+- Configuration changes require validation.
+- Critical incidents trigger alerts.
+
+---
+
+# Error Handling
+
+| Scenario | Response |
+|----------|----------|
+| Invalid credentials | Authentication denied |
+| MFA failure | Reject login |
+| Unauthorized access | HTTP 403 |
+| AI service unavailable | Retry and notify |
+| Database failure | Log error and create incident |
+| Model deployment failure | Rollback deployment |
+
+---
+
+# Security Considerations
+
+- Multi-Factor Authentication (MFA)
+- Role-Based Access Control (RBAC)
+- HTTPS
+- JWT Authentication
+- Session Timeout
+- Secret Management
+- Encryption
+- Immutable Audit Logs
+
+---
+
+# Performance Requirements
+
+| Metric | Target |
+|----------|---------|
+| Login Response | < 2 sec |
+| Dashboard Load | < 3 sec |
+| Monitoring Refresh | 15–30 sec |
+| Analytics Load | < 5 sec |
+| Audit Log Write | < 1 sec |
+
+---
+
+# Notifications & Alerts
+
+The system generates notifications for:
+
+- AI deployment completed
+- AI deployment failed
+- Prompt updated
+- Budget threshold exceeded
+- High latency detected
+- Model unavailable
+- Critical incident created
+- Incident resolved
+
+---
+
+# Integration Points
+
+| Service | Purpose |
+|----------|---------|
+| Authentication Service | User authentication |
+| Authorization Service | Permission validation |
+| AI Model Service | Model lifecycle management |
+| Prompt Management Service | Prompt administration |
+| AI Configuration Service | AI settings |
+| Knowledge Base Service | Knowledge management |
+| Monitoring Service | Metrics collection |
+| Analytics Service | Reporting |
+| Cost Management Service | Cost monitoring |
+| Incident Management Service | Incident response |
+| Audit Logging Service | Compliance logging |
+
+---
+
+# Dependencies
+
+- API Gateway
+- Authentication Service
+- Authorization Service
+- AI Model Service
+- Prompt Management Service
+- AI Configuration Service
+- Knowledge Base Service
+- Monitoring Service
+- Analytics Service
+- Cost Management Service
+- Incident Management Service
+- Audit Logging Service
+- User Database
+- AI Configuration Database
+- Metrics Database
+- Analytics Database
 
 ---
 
@@ -393,20 +380,19 @@ L --> M
 
 | Workflow | Description |
 |-----------|-------------|
-| Authentication | Secure administrator login and authorization |
-| Dashboard | Central monitoring interface |
-| AI Monitoring | Observe AI health and system performance |
-| AI Operations | Manage models, prompts, and AI configuration |
-| Knowledge Base | Maintain AI knowledge resources |
-| Analytics | Generate usage and performance reports |
-| Cost Management | Monitor AI operational costs |
-| Incident Management | Detect and resolve system issues |
-| Audit Logging | Record all administrative activities |
-| Logout | End secure administrative session |
+| Authentication | Secure administrator login |
+| Dashboard | Central AI administration |
+| AI Operations | Manage models, prompts, and configurations |
+| AI Monitoring | Observe AI system health |
+| Analytics | Generate operational reports |
+| Cost Management | Monitor AI costs |
+| Incident Management | Detect and resolve issues |
+| Audit Logging | Record administrative actions |
+| Logout | Securely terminate the session |
 
 ---
 
-# Related Documents
+# Related Document
 
 - overview.md
 - architecture.md
@@ -419,3 +405,4 @@ L --> M
 - database.md
 - events.md
 - implementation_plan.md
+
